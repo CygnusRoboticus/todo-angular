@@ -1,0 +1,17 @@
+<button (click)='disabled=!disabled'>
+  <span *ngIf='disabled; else elseBlock'>disabled</span>
+  <ng-template #elseBlock>enabled</ng-template>
+</button>
+
+<app-kanban-board
+  [board]='board'
+  [disabled]='disabled'
+  [onSave]='save'
+  [onDelete]='deleteBoard'
+  [onAddLane]='addLane'
+  [onAddCard]='addCard'
+  [onSaveLane]='save'
+  [onSaveCard]='save'
+  [onDeleteCard]='deleteCard'
+  [onDeleteLane]='deleteLane'
+>

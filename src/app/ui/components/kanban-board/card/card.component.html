@@ -1,0 +1,16 @@
+<app-stacker *ngIf='!isEditing' [horizontal]='true'>
+  <h3>{{card.name}}</h3>
+  <ng-template [ngIf]='!disabled && !card.disabled'>
+    <button type='button' (click)='isEditing=!isEditing'>E</button>
+    <button type='button' (click)='onDelete(card)'>×</button>
+  </ng-template>
+</app-stacker>
+
+<app-stacker *ngIf='isEditing' [horizontal]='true'>
+  <form [formGroup]='cardForm' (ngSubmit)='submit(card, cardForm)'>
+    <label>name:
+      <input formControlName='name' placeholder='name' required />
+      <button type='submit'>S</button>
+    </label>
+  </form>
+</app-stacker>
