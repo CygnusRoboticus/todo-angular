@@ -10,6 +10,7 @@ import { LaneComponent } from './ui/components/kanban-board/lane/lane.component'
 import { CardComponent } from './ui/components/kanban-board/card/card.component';
 import { StackerComponent } from './ui/components/stacker/stacker.component';
 import { LogPipe } from './ui/pipes/log.pipe';
+import { KanbanBoardProviderComponent } from './ui/providers/kanban-board-provider/kanban-board-provider.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LogPipe } from './ui/pipes/log.pipe';
     LaneComponent,
     CardComponent,
     LogPipe,
-    StackerComponent
+    StackerComponent,
+    KanbanBoardProviderComponent
   ],
   imports: [
     BrowserModule,

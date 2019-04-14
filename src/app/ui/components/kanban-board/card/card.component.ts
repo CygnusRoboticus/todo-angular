@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ICard } from 'src/app/ui/components/kanban-board/kanban-board.component';
+import { ICard } from 'src/app/ui/components/kanban-board/kanban-board.interfaces';
 
 @Component({
   selector: 'app-kanban-board-card',
@@ -10,8 +10,8 @@ import { ICard } from 'src/app/ui/components/kanban-board/kanban-board.component
 export class CardComponent implements OnInit, DoCheck {
   @Input() card: ICard;
   @Input() disabled: boolean;
-  @Input() onSubmit: (card: ICard, cardForm: FormGroup) => Promise<ICard>;
-  @Input() onDelete: (card: ICard) => Promise<ICard>;
+  @Input() save: (card: ICard, cardForm: FormGroup) => Promise<ICard>;
+  @Input() delete: (card: ICard) => Promise<ICard>;
 
   cardForm: FormGroup;
   isEditing = false;
@@ -32,7 +32,7 @@ export class CardComponent implements OnInit, DoCheck {
 
   async submit(card: ICard, cardForm: FormGroup) {
     try {
-      await this.onSubmit(card, cardForm);
+      await this.save(card, cardForm);
       this.isEditing = false;
     } catch {}
   }

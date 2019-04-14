@@ -2,7 +2,7 @@
   <h2>{{board.name}}</h2>
   <ng-template [ngIf]='!disabled && !board.disabled'>
     <button type='button' (click)='isEditing=!isEditing'>E</button>
-    <button (click)='onDelete(board)'>×</button>
+    <button (click)='delete.emit(board)'>×</button>
   </ng-template>
 </app-stacker>
 <ng-template #elseBlock>
@@ -19,15 +19,15 @@
     <app-kanban-board-lane
       [lane]='lane'
       [disabled]='disabled'
-      [onSubmit]='onSaveLane'
-      [onDelete]='onDeleteLane.bind(this, board)'
-      [onAddCard]='onAddCard'
-      [onSaveCard]='onSaveCard'
-      [onDeleteCard]='onDeleteCard'
+      [save]='saveLane'
+      [delete]='deleteLane.bind(this, board)'
+      [addCard]='addCard'
+      [saveCard]='saveCard'
+      [deleteCard]='deleteCard'
     ></app-kanban-board-lane>
   </div>
 
-  <button *ngIf='!disabled && !board.disabled' (click)='onAddLane(board)'>
+  <button *ngIf='!disabled && !board.disabled' (click)='addLane(board)'>
     add lane
   </button>
 </app-stacker>

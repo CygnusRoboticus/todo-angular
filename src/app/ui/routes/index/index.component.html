@@ -3,15 +3,16 @@
   <ng-template #elseBlock>enabled</ng-template>
 </button>
 
+<app-kanban-board-provider #provider></app-kanban-board-provider>
 <app-kanban-board
   [board]='board'
   [disabled]='disabled'
-  [onSave]='save'
-  [onDelete]='deleteBoard'
-  [onAddLane]='addLane'
-  [onAddCard]='addCard'
-  [onSaveLane]='save'
-  [onSaveCard]='save'
-  [onDeleteCard]='deleteCard'
-  [onDeleteLane]='deleteLane'
->
+  [save]='provider.save'
+  (delete)='provider.deleteBoard()'
+  [addLane]='provider.addLane'
+  [addCard]='provider.addCard'
+  [saveLane]='provider.save'
+  [saveCard]='provider.save'
+  [deleteCard]='provider.deleteCard'
+  [deleteLane]='provider.deleteLane'
+></app-kanban-board>

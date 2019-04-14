@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
-import { ILane, ICard } from 'src/app/ui/components/kanban-board/kanban-board.component';
+import { ILane, ICard } from 'src/app/ui/components/kanban-board/kanban-board.interfaces';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,11 +10,11 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class LaneComponent implements OnInit, DoCheck {
   @Input() lane: ILane;
   @Input() disabled: boolean;
-  @Input() onSubmit: (lane: ILane, laneForm: FormGroup) => Promise<ILane>;
-  @Input() onDelete: (lane: ILane) => Promise<ILane>;
-  @Input() onAddCard: (lane: ILane) => Promise<ICard>;
-  @Input() onSaveCard: (card: ILane) => Promise<ICard>;
-  @Input() onDeleteCard: (lane: ICard, card: ILane) => Promise<ICard>;
+  @Input() save: (lane: ILane, laneForm: FormGroup) => Promise<ILane>;
+  @Input() delete: (lane: ILane) => Promise<ILane>;
+  @Input() addCard: (lane: ILane) => Promise<ICard>;
+  @Input() saveCard: (card: ILane) => Promise<ICard>;
+  @Input() deleteCard: (lane: ICard, card: ILane) => Promise<ICard>;
 
   laneForm: FormGroup;
   isEditing = false;
@@ -35,7 +35,7 @@ export class LaneComponent implements OnInit, DoCheck {
 
   async submit(lane: ILane, laneForm: FormGroup) {
     try {
-      await this.onSubmit(lane, laneForm);
+      await this.save(lane, laneForm);
       this.isEditing = false;
     } catch {}
   }

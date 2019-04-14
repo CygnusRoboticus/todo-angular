@@ -2,7 +2,7 @@
   <h3>{{card.name}}</h3>
   <ng-template [ngIf]='!disabled && !card.disabled'>
     <button type='button' (click)='isEditing=!isEditing'>E</button>
-    <button type='button' (click)='onDelete(card)'>×</button>
+    <button type='button' (click)='delete(card)'>×</button>
   </ng-template>
 </app-stacker>
 
