@@ -20,7 +20,8 @@ export class CardComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.cardForm = this.fb.group({
-      name: [this.card.name, Validators.required]
+      name: [this.card.name, Validators.required],
+      description: [this.card.description]
     });
   }
 

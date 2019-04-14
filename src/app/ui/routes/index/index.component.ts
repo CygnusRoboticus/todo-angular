@@ -10,14 +10,17 @@ import { IBoard, ILane, ICard } from 'src/app/ui/components/kanban-board/kanban-
 export class IndexComponent implements OnInit {
   board: IBoard = {
     name: 'board 1',
+    description: 'a board of lanes and cards',
     lanes: [
       {
         name: 'lane 1',
-        cards: [{ name: 'card 1' }]
+        description: 'lane of cool cards',
+        cards: [{ name: 'card 1', description: 'skirts' }]
       },
       {
         name: 'lane 2',
-        cards: [{ name: 'card 1' }]
+        description: 'lane of less cool cards',
+        cards: [{ name: 'card 1', description: 'pants' }]
       }
     ]
   };

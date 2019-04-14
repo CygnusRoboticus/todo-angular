@@ -23,7 +23,8 @@ export class LaneComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.laneForm = this.fb.group({
-      name: [this.lane.name, Validators.required]
+      name: [this.lane.name, Validators.required],
+      description: [this.lane.description]
     });
   }
 

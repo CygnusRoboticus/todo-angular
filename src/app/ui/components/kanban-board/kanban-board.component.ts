@@ -26,7 +26,8 @@ export class KanbanBoardComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.boardForm = this.fb.group({
-      name: [this.board.name, Validators.required]
+      name: [this.board.name, Validators.required],
+      description: [this.board.description]
     });
   }
 

@@ -1,16 +1,21 @@
-<app-stacker *ngIf='!isEditing; else elseBlock' [horizontal]='true'>
-  <h2>{{board.name}}</h2>
-  <ng-template [ngIf]='!disabled && !board.disabled'>
-    <button type='button' (click)='isEditing=!isEditing'>E</button>
-    <button (click)='delete.emit(board)'>×</button>
-  </ng-template>
+<app-stacker *ngIf='!isEditing; else elseBlock'>
+  <app-stacker [horizontal]='true'>
+    <h2>{{board.name}}</h2>
+    <ng-template [ngIf]='!disabled && !board.disabled'>
+      <button type='button' (click)='isEditing=!isEditing'>E</button>
+      <button (click)='delete.emit(board)'>×</button>
+    </ng-template>
+  </app-stacker>
+
+  <p>{{board.description}}</p>
 </app-stacker>
+
 <ng-template #elseBlock>
   <form [formGroup]='boardForm' (ngSubmit)='submit(board, boardForm)'>
-    <label>name:
-      <input formControlName='name' placeholder='name' required />
-      <button type='submit'>S</button>
-    </label>
+    <label>name:</label>
+    <input formControlName='name' placeholder='name' required />
+    <textarea formControlName='description' placeholder='description'></textarea>
+    <button type='submit'>S</button>
   </form>
 </ng-template>
 

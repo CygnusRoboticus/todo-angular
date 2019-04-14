@@ -1,20 +1,23 @@
-<app-stacker *ngIf='!isEditing' [horizontal]='true'>
-  <h2>{{lane.name}}</h2>
-  <ng-template [ngIf]='!disabled && !lane.disabled'>
-    <button type='button' (click)='isEditing=!isEditing'>E</button>
-    <button (click)='delete(lane)'>×</button>
-  </ng-template>
+<app-stacker *ngIf='!isEditing; else elseBlock'>
+  <app-stacker [horizontal]='true'>
+    <h2>{{lane.name}}</h2>
+    <ng-template [ngIf]='!disabled && !lane.disabled'>
+      <button type='button' (click)='isEditing=!isEditing'>E</button>
+      <button (click)='delete(lane)'>×</button>
+    </ng-template>
+  </app-stacker>
+
+  <p>{{lane.description}}</p>
 </app-stacker>
 
-<app-stacker *ngIf='isEditing' [horizontal]='true'>
+<ng-template #elseBlock>
   <form [formGroup]='laneForm' (ngSubmit)='submit(lane, laneForm)'>
-    <label>name:
-      <input formControlName='name' placeholder='name' required />
-      <button type='submit'>S</button>
-    </label>
+    <label>name:</label>
+    <input formControlName='name' placeholder='name' required />
+    <textarea formControlName='description' placeholder='description'></textarea>
+    <button type='submit'>S</button>
   </form>
-</app-stacker>
-
+</ng-template>
 
 <div>
   <div *ngFor='let card of lane.cards'>
